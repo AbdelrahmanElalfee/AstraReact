@@ -1,14 +1,13 @@
 import './UserForm.Style.scss';
 import {Button, Chip, Divider, TextField} from "@mui/material";
 import {useRef, useState} from "react";
-import {createUser} from "../../api/Users.api.js";
+import {createUser, importUser} from "../../api/Users.api.js";
 import { toast } from "react-hot-toast";
 
 export const UserForm = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [file, setFile] = useState(null);
 
     const createUserHandler = () => {
         const data = {
@@ -34,7 +33,7 @@ export const UserForm = () => {
 
     const onFileChange = (e) => {
         const fileData = e.target.files[0];
-        setFile(fileData);
+        uploadWithExcelHandler(fileData);
     };
 
     const inputRef = useRef();
@@ -42,14 +41,14 @@ export const UserForm = () => {
         inputRef.current.click();
     }
 
-    const uploadWithExcelHandler = () => {
-        if (!file) {
+    const uploadWithExcelHandler = (fileData) => {
+        if (!fileData) {
             toast.error("Please select an Excel file.");
             return;
         }
 
         const formData = new FormData();
-        formData.append("file", selectedFile);
+        formData.append("file", fileData);
 
         importUser(formData)
             .then((res) => {

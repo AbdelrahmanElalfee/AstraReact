@@ -10,5 +10,5 @@ export const createUser = (data) => {
 }
 
 export const importUser = (file) => {
-
+    return axios.post(`${BASE_URL}/import`, file);
 }
