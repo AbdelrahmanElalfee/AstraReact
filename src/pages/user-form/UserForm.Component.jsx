@@ -58,7 +58,7 @@ export const UserForm = () => {
                 }, 2000);
             })
             .catch((err) => {
-                toast.error(err.response.data.message);
+                toast.error("Failed");
                 setTimeout(() => {
                     toast.dismiss();
                 }, 2000);
