@@ -58,7 +58,7 @@ export const UserForm = () => {
                 }, 2000);
             })
             .catch((err) => {
-                toast.error("Failed");
+                toast.error("Users Already Exists.");
                 setTimeout(() => {
                     toast.dismiss();
                 }, 2000);
