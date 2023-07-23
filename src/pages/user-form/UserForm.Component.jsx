@@ -28,7 +28,7 @@ export const UserForm = () => {
 
         createUser(data)
             .then((res) => {
-                toast.success("User has been added");
+                toast.success(res.data?.message);
                 setTimeout(() => {
                     toast.dismiss();
                 }, 2000);
